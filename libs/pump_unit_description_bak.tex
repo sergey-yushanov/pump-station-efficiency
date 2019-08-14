@@ -1,0 +1,692 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+%\documentclass[11pt]{article}
+\documentclass[a4paper, 12pt]{article}
+\usepackage{fontspec} % loaded by polyglossia, but included here for transparency 
+\usepackage{polyglossia}
+\setmainlanguage{russian} 
+\setotherlanguage{english}
+
+\setmainfont[Ligatures=TeX]{Times New Roman}
+\newfontfamily\cyrillicfont{Times New Roman}[Script=Cyrillic]
+    
+
+    
+    \usepackage[T2A]{fontenc}			% кодировка
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+%    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+%    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage{mathtext} 				% русские буквы в формулах
+%    \usepackage[utf8]{inputenc}			% кодировка исходного текста
+%    \usepackage[english,russian]{babel}	% локализация и переносы
+    \usepackage{misccorr}				% настройки для соответствия правилам отечественной полиграфии
+    
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{Описание расчётного модуля}
+    
+    
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    \usepackage{indentfirst}
+    \parindent=1.25cm 
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+
+\section{Введение}
+
+    Правильное проектирование насосной станции позволяет сэкономить большое
+количество электроэнергии при эксплуатации. Для этого, как правило, насосы подбирают 
+по максимальной точке. Программное обеспечение Grundfos позволяет дополнительно 
+оценить энергозатраты по нескольким рабочим точкам.
+
+    В документе содержится информация об инструменте для оптимизации
+конструкции и работы насосной станции для произвольного количества рабочих точек,
+в том числе и для случаев, когда необходимо использовать насосы разных размеров.
+
+
+\section{Методика}
+
+    Насосная станция представлена в виде набора насосных агрегатов с
+произвольными характеристиками. Никаких ограничений на "одинаковость"
+насосов не накладывается, насосные агрегаты включены параллельно.
+
+
+\subsection{Основы}
+
+    Каждый насосный агрегат представляет собой набор из непосредственно
+насоса, двигателя и частотного преобразователя. Каждый механизм имеет
+свои характеристики, алгоритм расчёта которых описан ниже.
+
+
+\subsubsection{Насос}
+
+    Каждый насос описывается характеристической кривой (зависимость напора
+от расхода) и кривой КПД (зависимость от расхода).
+
+    Кривая характеристики насоса $H(Q)$ задается в табличном формате парами
+значений \((Q, H)\), которые потом аппроксимируются полиномом второго порядка \cite{Shankar}:
+
+\begin{equation}\label{eq:HQ_curve}
+	H(Q) = C_0 \cdot \omega^2 - C_1 \cdot Q \cdot \omega - C_2 \cdot Q^2,
+\end{equation}
+
+\noindent где $H$ - напор, $Q$ - расход, $\omega$ - нормированная частота вращения
+(при номинальных параметрах $\omega = 1$), а $C_0, C_1, C_2$ - коэффициенты, которые
+получаются при аппроксимации исходных табличных данных.
+
+Отдельно задаются специфичные параметры \(Q_{\min}\) и \(Q_{\max}\),
+которые определяют минимально и максимально допустимые расходы при
+номинальной частоте вращения. Расход, напор и мощность $P$ на разных
+частотах рассчитываются через законы подобия:
+
+\begin{equation}\label{eq:affinity}
+	\frac{Q_2}{Q_1} = \frac{n_2}{n_1} = \omega, \frac{H_2}{H_1} = \left(\frac{n_2}{n_1}\right)^2 = \omega^2, \frac{P_2}{P_1} = \left(\frac{n_2}{n_1}\right)^3 = \omega^3.
+\end{equation}
+
+В диапазоне работы КПД насоса $\eta_P$ аппроксимируется параболой. Если известно только
+значение максимального КПД \((Q_{BEP}, \eta_{BEP})\), кривая задается
+формулой \cite{Chantasiriwan}:
+
+\begin{equation}
+	\eta_P(Q) = a \cdot Q^2 + b \cdot Q,
+\end{equation}
+
+\noindent коэффициенты которой находятся из следующей системы уравнений:
+
+\begin{equation}
+\label{eq:eff_bep}
+	\left\{
+    \begin{aligned}
+        &a \cdot Q^2_{BEP} + b \cdot Q_{BEP} - \eta_{BEP} = 0 \\
+        &2a \cdot Q_{BEP} + b = 0
+    \end{aligned}
+	\right.
+\end{equation}
+
+\noindent Второе уравнение этой системы получено из условия равенства нулю производной в точке
+максимума \((Q_{BEP}, \eta_{BEP})\). Если известно две точки \((Q_{BEP}, \eta_{BEP})\) и \((Q_2, \eta_2)\),
+\(Q_2 > Q_{BEP}\), то кривая задается следующей системой
+
+\begin{equation}
+	\eta_P(Q) = 
+    \begin{cases}
+        a \cdot Q^2 + b \cdot Q, &\text{если }  Q < Q_{BEP} \\
+        a_2 \cdot Q^2 + b_2 \cdot Q + c_2, &\text{если }  Q \ge Q_{BEP}
+    \end{cases}
+\end{equation}
+
+\noindent где коэффициенты \(a\) и \(b\) находятся из системы уравнений (\ref{eq:eff_bep}), а
+остальные из следующей:
+
+\begin{equation}
+    \left\{
+    \begin{aligned}
+            &a_2 \cdot Q^2_{BEP} + b_2 \cdot Q_{BEP} + c_2 - \eta_{BEP} = 0 \\
+            &2a_2 \cdot Q_{BEP} + b_2 = 0 \\
+            &a_2 \cdot Q^2_2 + b_2 \cdot Q_2 + c_2 - \eta_2 = 0
+	\end{aligned}
+    \right.
+\end{equation}
+
+\noindent Зависимость гидравлического КПД насоса от скорости вращения рассчитывается, используя \cite{Sárbu}
+
+\begin{equation}
+	\eta_P = \eta_2 = 1 - (1 - \eta_1) \cdot \left(\frac{n_1}{n_2}\right)^{0,1} = 1 - (1 - \eta_1) \cdot \left(\frac{1}{\omega}\right)^{0,1}.
+\end{equation}
+
+    Гидравлическая мощность:
+
+\begin{equation}
+	P_H = \rho gQH,
+\end{equation}
+
+\noindent где $\rho$ - плотность жидкости, $g$ - ускорение свободного падения.
+
+Мощность на валу насоса будет равна:
+
+\begin{equation}
+	P_S = \frac{P_H}{\eta_P}.
+\end{equation}
+
+\noindent Эту мощность мы считаем полезной мощностью на валу двигателя.
+
+\subsubsection{Двигатель}
+
+Для двигателя указываются номинальная мощность \(P_{NOM}\) и значения КПД при нагрузках \(100\,\%\) и \(75\,\%\) - \(\eta_{M,100}\) и \(\eta_{M,75}\), соответственно. Нагрузка двигателя:
+
+\begin{equation}
+	L = \frac{P_S}{P_{NOM} / \eta_{M,100}}.
+\end{equation}
+
+\noindent Согласно стандарту IEC 60034-31 \cite{IEC} можно рассчитать КПД двигателя, при
+любом значении нагрузки по формуле:
+
+\begin{equation}
+  \begin{aligned}
+        &\nu_L = \frac{ \left(\frac{1}{\eta_{M,100}}-1\right) - 0,75 \left(\frac{1}{\eta_{M,75}}-1\right)}{0,4375} \\
+        &\nu_0 = \left(\frac{1}{\eta_{M,100}}-1\right)-\nu_L \\
+        &\eta_M = \frac{1}{1+ (\nu_0 / L) + \nu_L \cdot L}.
+    \end{aligned}
+\end{equation}
+
+\noindent Отсюда, потребляемая мощность двигателя:
+
+\begin{equation}
+	P_M = \frac{P_S}{\eta_M}.
+\end{equation}
+
+
+\subsubsection{Частотный преобразователь}
+
+    Считаем, что КПД частотного преобразователя на всем диапазоне нагрузок
+постоянен. Принимаем, что \(\eta_{VFD} = const\), а потребляемая мощность электрической сети:
+
+\begin{equation}
+	P_E = \frac{P_M}{\eta_{VFD}}.
+\end{equation}
+
+
+\subsubsection{Насосный агрегат}
+
+    Общий КПД насосного агрегата складывается из КПД составляющих частей -
+насоса, двигателя и частотного преобразователя:
+
+\begin{equation}\label{eq:eff_total}
+	\eta_{TOT} = \frac{P_H}{P_E} = \eta_P \cdot \eta_M \cdot \eta_{VFD}.
+\end{equation}
+
+\subsection{Алгоритм}
+
+Оптимизация выполняется для каждой рабочей точки, которую может создать насосная станция, используя заданное пользователем разрешение \(Q_{step} \times H_{step}\). Размер шага зависит от требуемой точности и влияет на время вычислений и объём памяти. Задача оптимизации для каждой рабочей точки \((Q_i, H_j)\) выглядит
+следующим образом:
+
+\begin{equation}
+\underset{\vec{f}_{i,j} \in X_{i,j}}{\min} P_E\left(Q_i,H_j,\vec{f}_{i,j}\right),
+\end{equation}
+
+\noindent где \(\vec{f}_{i,j}\) - это вектор частот каждого насоса, а пространство
+поиска \(X_{i,j}\) включает все возможные комбинации, которые дают
+итоговую рабочую точку \((Q_i, H_j)\). Оптимизация выполняется прямым
+поиском (перебором) всех возможных значений и выбора среди них
+минимального.
+
+Сначала находим оптимальные режимы работы каждого насоса во всех рабочих точках \((Q_i, H_j)\) в диапазоне частот [25, 50] Гц.
+
+\begin{enumerate}
+
+\item
+Для фиксированной точки \((Q_i, H_j)\) проходим по всем возможным частотам с шагом 0.02 Гц. 
+Для рассматриваемой рабочей точки выбирается та частота, которая дает наибольший КПД (\ref{eq:eff_total}).
+
+\item
+Минимальный и максимальный допустимые напоры \(H_{\min}\) и \(H_{\max}\), а также минимальный и максимальный допустимые расходы \(Q_{\min}\) и \(Q_{\max}\) рассчитываются на основе характеристики насоса (\ref{eq:HQ_curve}) и законов подобия (\ref{eq:affinity}).
+
+\item
+Результаты расчёта хранятся в двух специальных матрицах.
+\(\mathbf{F}\) содержит оптимальную частоту, а \(\mathbf{H}\) содержит
+КПД насосного агрегата для соответствующей рабочей точки и частоты. Элементы матриц,
+которые представляют недопустимые рабочие точки, устанавливаются в 0.
+
+\begin{equation}
+	\mathbf{F} = \left[\begin{matrix}
+		f_{Q_1,H_1} & f_{Q_2,H_1} & \dots & f_{Q_m,H_1} \\
+		f_{Q_1,H_2} & f_{Q_2,H_2} & \dots & f_{Q_m,H_2} \\ 
+		\vdots & \vdots & \ddots & \vdots \\
+		f_{Q_1,H_n} & f_{Q_2,H_n} & \dots & f_{Q_m,H_n} \\
+	\end{matrix}\right], 
+	\mathbf{H} = \left[\begin{matrix}
+		\eta_{Q_1,H_1} & \eta_{Q_2,H_1} & \dots & \eta_{Q_m,H_1} \\
+		\eta_{Q_1,H_2} & \eta_{Q_2,H_2} & \dots & \eta_{Q_m,H_2} \\ 
+		\vdots & \vdots & \ddots & \vdots \\
+		\eta_{Q_1,H_n} & \eta_{Q_2,H_n} & \dots & \eta_{Q_m,H_n} \\
+	\end{matrix}\right].
+\end{equation}
+\end{enumerate}
+
+    Далее рассматриваются все возможные комбинации насосов. Для каждой
+комбинации насосов необходимо проделать следующее: 
+
+\begin{enumerate}
+
+\item
+Определяем разрешённый диапазон напора. Минимальный и максимальный напор диапазона
+рассчитывается следующим образом (\(n\) - количество насосов, работающих
+в комбинации):
+
+\begin{equation}
+	\begin{aligned}
+		H_{\min} &= \max\{H_{\min,1}, H_{\min,2}, \cdots, H_{\min,n}\}, \\
+		H_{\max} &= \min\{H_{\max,1}, H_{\max,2}, \cdots, H_{\max,n}\}.
+	\end{aligned}
+\end{equation}
+
+
+\item
+Проходим по разрешённому диапазону напора \([H_{\min}, H_{\max}]\) c
+  шагом \(H_{step}\). Напор в каждой точке обозначим как \(H_j\). Для
+  напора \(H_j\) находим максимальный возможный расход для выбранной комбинации:
+
+\begin{equation}
+	Q_{\max}(H_j) = \sum_{k=1}^{n} Q_{\max}^k(H_j),
+\end{equation}
+
+\noindent где $Q_{\max}^k(H_j)$ - максимальный расход для $k$-го насоса в комбинации для напора $H_j$.
+
+\item
+  С шагом \(Q_{step}\) проходим по всему диапазону
+  расхода \([0, Q_{\max}(H_j)]\), который даёт исследуемая комбинация
+  насосов. В каждой точке расхода \(Q_i\) вычисляем все возможные
+  комбинации расходов для насосов, работающих в комбинации. Для одного и
+  того же значения расхода \(Q_i\) множество значений таких расходов в
+  зависимости от количества насосов \(n\):
+
+\begin{equation}
+	Q_i = \sum_{k=1}^{n} q_k.
+\end{equation}
+
+
+\item
+  КПД каждого насоса $\eta_k$ определяется из массива рабочих режимов насоса
+  \(\mathbf{H}\) для расхода $q_k$. Общий КПД при этом рассчитывается для общего расхода
+  \(Q_i\).
+
+\begin{equation}
+	\eta_{Q_i, H_j} = \frac{\sum_{k=1}^{n} q_k}{\sum_{k=1}^{n} \frac{q_k}{\eta_k}} = \prod_{k=1}^{n} \eta_k \cdot \frac{\sum_{k=1}^{n} q_k}{\sum_{k=1}^{n} (q_k \cdot \prod_{p \ne k}^{n} \eta_p)}.
+\end{equation}
+
+Здесь $q_k$ - значение расхода для k-го насоса из комбинации при напоре $H_j$, а $\eta_k$ - значение КПД для k-го насоса при расходе $q_k$ и напоре $H_j$. Расход $q_k$ находится в диапазоне $[0, Q_i]$, а конкретные значения выбираются по макисмуму общего КПД:
+ 
+\begin{equation}
+	\max {\eta_{Q_i, H_j}}, \text{при условии: } q_k \in [0, Q_i], Q_i = \sum_{k=1}^{n} q_k, H_j = const.
+\end{equation}
+ 
+\item
+  Из всех вариантов КПД для рабочей точки \((Q_i, H_j)\) наибольшее
+  значение сохраняется в матрице результатов \(\mathbf{R}\). Количество
+  насосов, которое даёт этот лучший результат КПД, сохранется в другой
+  матрице \(\mathbf{C}\). Конечный результат - два массива, которые
+  покрывают все возможные режимы работы насосной станции для выбранной
+  комбинации работы насосов. Каждый элемент представляет область,
+  определенную шагом \(Q_{step} \times H_{step}\):
+
+\begin{equation}
+	\mathbf{C} = \left[\begin{matrix}
+		c_{Q_1,H_1} & c_{Q_2,H_1} & \dots & c_{Q_m,H_1} \\
+		c_{Q_1,H_2} & c_{Q_2,H_2} & \dots & c_{Q_m,H_2} \\ 
+		\vdots & \vdots & \ddots & \vdots \\
+		c_{Q_1,H_n} & c_{Q_2,H_n} & \dots & c_{Q_m,H_n} \\
+	\end{matrix}\right], 
+	\mathbf{R} = \left[\begin{matrix}
+		\eta_{Q_1,H_1} & \eta_{Q_2,H_1} & \dots & \eta_{Q_m,H_1} \\
+		\eta_{Q_1,H_2} & \eta_{Q_2,H_2} & \dots & \eta_{Q_m,H_2} \\ 
+		\vdots & \vdots & \ddots & \vdots \\
+		\eta_{Q_1,H_n} & \eta_{Q_2,H_n} & \dots & \eta_{Q_m,H_n} \\
+	\end{matrix}\right].
+\end{equation}
+
+\end{enumerate}
+
+
+\subsection{Применение}
+
+Возможно несколько сценариев работы с методикой, один из которых - использование для энергоаудита.
+В этом случае рассчитывается текущая эффективность насосной станции и оценивается потенциал энеросбережения
+при использовании различных насосных агрегатов. На выходе мы получаем расчёт окупаемости при внесении тех или иных изменений в алгоритмы и (или) оборудование.
+
+\subsubsection{Расчёт энергопотребления}
+
+    Исходные данные напора и расхода зависят от времени и для определения
+требуемых пар значений \((Q_i, H_j)\) измеренная зависимость расхода
+квантуется по уровню с шагом \(Q_{step}\), а зависимость напора с шагом
+\(H_{step}\). После чего определяются соответствующие индексы в матрицах
+результатов \(\mathbf{C}\) и \(\mathbf{R}\), откуда можно легко
+рассчитать оптимальную электрическую потребляемую активную мощность для
+каждой комбинации насосных агрегатов:
+
+\begin{equation}
+	P_E(Q_i, H_j) = \frac{P_H(Q_i, H_j)}{\eta_{Q_i, H_j}} = \frac{\rho gQ_iH_j}{\eta_{Q_i, H_j}}.
+\end{equation}
+
+\noindent Значения матрицы оптимального количества насосов в каждой рабочей точке
+используется для определения границ переключения между насосами и
+гистерезиса переключения.
+
+
+\subsubsection{NPSH}
+
+Низкое давление на всасе насоса и большая скорость вращения насоса приводят к понижению давления на лопатках насоса. Если давление жидкости при этом ниже значения давления насыщенных паров, жидкость закипает. Мельчайшие пузырьки пара жидкости двигаются вдоль лопаток рабочего колеса и в области высокого давления пузырьки быстро схлопываются. Образовавшиеся при схлопывании звуковые волны воздействуют на внутреннюю поверхность насоса, что может привести к серьезной эрозии рабочего колеса. Описанное явление называется кавитация. Таким образом, если мы хотим эффективно перекачивать жидкость, нужно сохранять её в жидком состоянии. Одним из параметров, который влияет на правильность эксплуатации насосных агрегатов, является высота столба жидкости над всасывающим патрубком насоса (NPSH).
+
+Требуемое значение NPSH ($\text{NPSH}{_\text{R}}$, required) зависит от конструкции насоса. Когда жидкость проходит через всасывающий патрубок насоса и попадает на направляющий аппарат рабочего колеса, скорость жидкости увеличивается, а давление падает. Также возникают потери давления из-за турбулентности и неровности потока жидкости. Центробежная сила лопаток рабочего колеса также увеличивает скорость и уменьшает давление жидкости. $\text{NPSH}{_\text{R}}$ - необходимый подпор на всасывающем патрубке насоса, чтобы компенсировать все потери давления в насосе и удержать жидкость выше уровня давления насыщенных паров, и ограничить потери напора, возникающие в результате кавитации на уровне 3\%. Такой запас на падение напора - общепринятый критерий $\text{NPSH}{_\text{R}}$, принятый для облегчения расчета. Большинство насосов с низкой всасывающей способностью могут работать с низким или минимальным запасом по $\text{NPSH}{_\text{R}}$, что серьезно не сказывается на сроке их эксплуатации. $\text{NPSH}{_\text{R}}$ зависит от скорости и производительности насосов. Производители насосов предоставляют информацию о характеристике $\text{NPSH}{_\text{R}}$, кторую необходимо задавать в табличном формате парами значений \((Q, \text{NPSH}{_\text{R}})\). Эти значения потом аппроксимируются полиномом второго порядка:
+
+\begin{equation}\label{eq:NPSH_curve}
+	\text{NPSH}{_\text{R}}(Q) = D_0 \cdot \omega^2 - D_1 \cdot Q \cdot \omega - D_2 \cdot Q^2,
+\end{equation}
+
+\noindent где $D_0, D_1, D_2$ - коэффициенты, которые получаются при аппроксимации исходных табличных данных. При изменении частоты вращения насоса для вычисления $\text{NPSH}{_\text{R}}$ применяются законы подобия (\ref{eq:affinity}), как и для напора:
+
+\begin{equation}\label{eq:affinity1}
+	\frac{\text{NPSH}_2}{\text{NPSH}_1} = \left(\frac{n_2}{n_1}\right)^2 = \omega^2.
+\end{equation}
+
+Допустимый NPSH ($\text{NPSH}{_\text{A}}$, available) - является характеристикой системы, в которой работает насос. Это разница между атмосферным давлением, высотой всасывания насоса и давлением насыщенных паров:
+
+\begin{equation}
+	\text{NPSH}{_\text{A}} = \frac{P_{\text{атм}}}{\rho g} + h_S - \frac{V_S^2}{2g} - \Delta h_f - \Delta h_m - \frac{P_{\text{нас}}}{\rho g} ,
+\end{equation}
+
+\noindent где $P_{\text{атм}}$ - атмосферное давление, $h_S$ - максимальная высота всасывания, $V_S$ - скорость жидкости на всасе (3-е слагаемое - это динамический напор во всасывающем трубопроводе), $\Delta h_f$ - потери на трение во всасывающем трубопроводе при требуемой производительности насоса, $\Delta h_m$ - незначительные потери на входе в насос, $P_{\text{нас}}$ - давление насыщенных паров жидкости при максимальной рабочей температуре.
+
+В реальной системе $\text{NPSH}{_\text{A}}$ определяется с помощью показаний манометра, установленного на стороне всасывания насоса. Применяется следующая формула:
+
+\begin{equation}
+	\text{NPSH}{_\text{A}} = \frac{P_{\text{атм}}}{\rho g} + \frac{V_S^2}{2g} - \frac{P_{\text{нас}}}{\rho g} \pm G_r,
+\end{equation}
+
+\noindent где $G_r$ - показания манометра на всасывании насоса, выраженные в метрах, взятые с плюсом (+) , если давление выше атмосферного и с минусом (-), если ниже, с поправкой на осевую линию насоса.
+
+
+Чтобы предотвратить кавитацию для стандартных насосов с низкой всасывающей способностью, необходимо обеспечить, чтобы $\text{NPSH}{_\text{A}}$ системы был выше, чем $\text{NPSH}{_\text{R}}$ насоса. Насосы с высокой всасывающей способностью требуют запаса для $\text{NPSH}{_\text{R}}$. Стандарт Гидравлического Института (ANSI/HI 9.6.1) предлагает увеличивать $\text{NPSH}{_\text{A}}$ в 1.2 - 2.5 раза для насосов с высокой и очень высокой всасывающей способностью. Поэтому, в общем случае, при работе в допустимом диапазоне рабочих характеристик должно выполняться следующее условие:
+
+\begin{equation}
+	\text{NPSH}{_\text{A}} \ge \text{NPSH}{_\text{R}} + \text{запас}.
+\end{equation}
+
+
+\noindent 
+
+
+
+    % Add a bibliography block to the postdoc
+    
+\begin{thebibliography}{00} % Список литературы
+
+	\bibitem{Shankar}
+	Shankar V. K. A. et al. A comprehensive review on energy efficiency enhancement initiatives in centrifugal pumping system //Applied Energy. – 2016. – Т. 181. – С. 495-513.
+	
+	\bibitem{Chantasiriwan}
+	Chantasiriwan S. Performance of variable-speed centrifugal pump in pump system with static head //International Journal of Power and Energy Systems. – 2013. – Т. 33. – №. 1.
+	
+	\bibitem{Sárbu}
+	Sárbu I., Borza I. Energetic optimization of water pumping in distribution systems //Periodica Polytechnica Mechanical Engineering. – 1998. – Т. 42. – №. 2. – С. 141-152.
+	
+	\bibitem{IEC}
+	IEC I. E. C. 60034-31: Rotating electrical machines-Part 31. – 2009.
+	
+\end{thebibliography}
+    
+    
+    
+    
+    \end{document}
